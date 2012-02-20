@@ -93,7 +93,7 @@
       </div>
 
       <div id="terms" class="step overview-idea" data-x="-800" data-y="550">
-        <p class="bold big">I don't think that means,<br />what you think it means</p>
+        <p class="bold big">I don't think that means<br />what you think it means</p>
       </div>
 
       <div class="step overview-idea term" data-x="-1100" data-y="560" data-scale="0.5">
@@ -191,10 +191,10 @@
         <p><i>fixed length ordered list of elements</i></p>
         <p><i>can contain anything</i></p>
         <pre class='brush: erlang'>
-          X = 4
-          Y = 5.5
-          Point = {X, Y}
-          Location = {point, X, Y}
+          X = 4.
+          Y = 5.5.
+          Point = {X, Y}.
+          Location = {point, X, Y}.
         </pre>
       </div>
 
@@ -207,14 +207,14 @@
 
       <div class="step code"  data-x="1200" data-y="-25" data-scale="0.1">
         <pre class='brush: erlang'>
-          EmptyList = []
-          Small = [1, 2, 3]
+          EmptyList = [].
+          Small = [1, 2, 3].
 
-          AddHead = [0 | Small] 
-                  = [0, 1, 2, 3]
+          AddHead = [0 | Small]
+                  = [0, 1, 2, 3].
 
-          String = "abc"
-                 = [97, 98, 99]
+          String = "abc",
+                 = [97, 98, 99].
         </pre>
       </div>
 
@@ -227,9 +227,9 @@
               X + Y
             end.
 
-          AddTen = addX(10)
-          Z = 100
-          Result = AddTen(Z) = 110
+          AddTen = addX(10).
+          Z = 100.
+          Result = AddTen(Z) = 110.
         </pre>
       </div>
 
@@ -261,8 +261,8 @@
           {Type, _, _} = I.
           Type = point.
 
-          List = [1, 2, 3]
-          [Head | Tail] = List
+          List = [1, 2, 3].
+          [Head | Tail] = List.
             % Head = 1
             % Tail = [2, 3]
         </pre>
