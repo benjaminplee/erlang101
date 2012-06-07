@@ -7,7 +7,7 @@
     <meta name="description" content="A first taste of Erlang: what you should know before you start your next project" />
     <meta name="author" content="Benjamin P Lee and Matt Campbell" />
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,700italic,300,400,800' rel='stylesheet' type='text/css'>
+    <link href='css/font.css' rel='stylesheet' type='text/css'>
     <link href="css/normalize.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/shCore.css" rel="stylesheet" type="text/css" />
@@ -146,45 +146,6 @@
         <p class="bold big">Erlang <b>has...</b></p>
       </div>
 
-      <div class="step has" data-x="1100" data-y="200" data-scale="0.01">
-        <p class="bold">Single assignment</p>
-        <p><i>truth statements; synonyms</i></p>
-        <p><i>no mutable state</i></p>
-        <p class="big"><b>pattern matching</b></p>
-        <p><i>we will come back to this</i></p>
-      </div>
-
-      <div class="step has" data-x="700" data-y="-200" data-scale="0.5">
-        <p class="bold">Functions</p>
-        <p><i>{M, F, A} = {module, function, arity}</i></p>
-      </div>
-
-      <div class="step code"  data-x="1000" data-y="-200" data-scale="0.2">
-        <pre class='brush: erlang'>
-          -module(math).
-
-          add(X, Y) -> X + Y.
-          increment(X) -> add(X, 1).
-        </pre>
-      </div>
-
-      <div class="step has"  data-x="800" data-y="-100" data-scale="0.5">
-        <p class="bold">4 different expression terminators</p>
-        <p class="big"><b>period, comma, semi-colon,<br/> and nothing!</b></p>
-      </div>
-
-      <div class="step code"  data-x="1200" data-y="-100" data-scale="0.2">
-        <pre class='brush: erlang'>
-          foo(X, Y) ->
-            Y = math:add(X, Y),
-            Z = Y rem 2,
-            case Z of
-              0 -> true;
-              1 -> undefined
-            end.
-        </pre>
-      </div>
-
       <div class="step has"  data-x="800" data-y="0" data-scale="0.5">
         <p class="bold">Elementary data types ONLY</p>
         <p><i>no objects</i></p>
@@ -229,6 +190,63 @@
         </pre>
       </div>
 
+      <div class="step has" data-x="1100" data-y="200" data-scale="0.01">
+        <p class="bold">Single assignment</p>
+        <p><i>truth statements; synonyms</i></p>
+        <p><i>no mutable state</i></p>
+        <p class="big"><b>pattern matching</b></p>
+        <p><i>we will come back to this</i></p>
+      </div>
+
+      <div class="step code" data-x="1100" data-y="150" data-scale="0.1">
+        <pre class='brush: erlang'>
+          X = 4.
+          Y = 2.
+          Z = X = Y + 2.
+
+          I = {point, X, Y}.
+          {Type, _, A} = I.
+            % Type = point.
+            % A = 2
+
+          List = [1, 2, 3].
+          [Head | Tail] = List.
+            % Head = 1
+            % Tail = [2, 3]
+        </pre>
+      </div>
+
+      <div class="step has" data-x="700" data-y="-200" data-scale="0.5">
+        <p class="bold">Functions</p>
+        <p><i>{M, F, A} = {module, function, arity}</i></p>
+      </div>
+
+      <div class="step code"  data-x="1000" data-y="-200" data-scale="0.2">
+        <pre class='brush: erlang'>
+          -module(math).
+
+          add(X, Y) -> X + Y.
+          increment(X) -> add(X, 1).
+        </pre>
+      </div>
+
+      <div class="step has"  data-x="800" data-y="-100" data-scale="0.5">
+        <p class="bold">4 different expression terminators</p>
+        <p class="big"><b>period, comma, semi-colon,<br/> and nothing!</b></p>
+      </div>
+
+      <div class="step code"  data-x="1200" data-y="-100" data-scale="0.2">
+        <pre class='brush: erlang'>
+          foo(X, Y) ->
+            Y = math:add(X, Y),
+            Z = Y rem 2,
+            case Z of
+              0 -> true;
+              1 -> undefined
+            end.
+        </pre>
+      </div>
+
       <div class="step code"  data-x="1200" data-y="50" data-scale="0.1">
         <p class="bold">Funs</p>
         <p><i>lambdas. closures.</i></p>
@@ -258,27 +276,6 @@
         <p class="big"><b>pattern matching</b></p>
       </div>
 
-      <div class="step code" data-x="1100" data-y="150" data-scale="0.1">
-        <p class="bold">Simple Examples</p>
-      </div>
-
-      <div class="step code" data-x="1100" data-y="150" data-scale="0.1">
-        <pre class='brush: erlang'>
-          X = 4.
-          Y = 2.
-          Z = X = Y + 2.
-
-          I = {point, X, Y}.
-          {Type, _, _} = I.
-          Type = point.
-
-          List = [1, 2, 3].
-          [Head | Tail] = List.
-            % Head = 1
-            % Tail = [2, 3]
-        </pre>
-      </div>
-
       <div class="step code"  data-x="1100" data-y="200" data-scale="0.1">
         <p class="bold">Recursive <b>Fibonacci</b> in Erlang</p>
         <pre class='brush: erlang'>
@@ -286,6 +283,20 @@
           fib(1) -> 1;
           fib(N) ->
             fib(N-1) + fib(N-2).
+        </pre>
+      </div>
+
+      <div class="step code"  data-x="1300" data-y="200" data-scale="0.1">
+        <p class="bold">Internal Pattern Matching</p>
+        <pre class='brush: erlang'>
+        loop() ->
+          receive
+            {Link, Chain, Link} ->
+              Found(Chain),
+              ok;
+            {Link, Chain, Goal} ->
+              loop()
+          end.
         </pre>
       </div>
 
@@ -306,8 +317,9 @@
 
 
       <div id="experience" class="step" data-x="-5000" data-y="100">
-        <p class="big bold"><b>Learn from our experience</b></p>
+        <p class="big bold"><b>Personal Experience</b></p>
       </div>
+
       <div id="experience1" class="step" data-x="-5000" data-y="500">
         <p class="big">Not the solution to every problem</p>
         <p class="extralight">
@@ -354,7 +366,7 @@
 
       <div id="stillhungry" class="step" data-x="700" data-y="400">
         <p class="big bold"><b>Still Hungry?</b></p>
-        <p>Ask us for more</p>
+        <p>Get your hands dirty</p>
       </div>
 
       <div id="forkme" class="step" data-x="1200" data-y="500">
